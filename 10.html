@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>lab10</title>
+</head>
+<body>
+ <script>
+    //1
+    function Mod(arr,n)
+    {
+        let rez=[];
+        for (let i=0;i<arr.length;i++)
+        {
+            if(arr[i]%n==0) {rez.push(arr[i]);}
+        }
+        return rez;
+    }
+    let a=[1,2,3,4,5,6,7,8,9,10,11,234,123,39,150,80,155];
+    console.log(Mod(a,5))
+    //2
+    function temp(str)
+    {
+        return str.replace(/\s+/g, '').toLowerCase().split('').sort().join('');
+    }
+    function Anagram(str, test) 
+    {
+       
+        temp(str);temp(test);
+        if(str.trim() === test.trim()) return false;
+        else {return temp(str) === temp(test);}
+    }
+    console.log(Anagram("удар","руда"))
+    console.log(Anagram("удар","кот"))
+    //3
+    function glas(str)
+    {
+        
+        let all=['a','e','i','o','u'];
+        let count=0;
+        for(let i=0;i<str.length;i++)
+        {
+            if(all.includes(str[i])) {count++}; 
+        }
+        return count;
+    }
+    console.log(glas("abcda"));
+    console.log(glas("aeiou"));
+    //4
+    function tryn(n)
+    {
+        let str="#"
+        for(let i=0;i<n;i++)
+        {
+            console.log((i+1)+"\t"+str);
+            str=str+"#";
+        }
+    }
+    tryn(7);
+    //5
+    function FizzBuzz()
+    {
+        for(let i=1;i<=100;i++)
+        {
+            if (i%3==0&i%5==0) {console.log("FizzBuzz"); continue;}
+            else 
+            {
+                if (i%3==0&i%5!=0) {console.log("Fizz");continue;}
+                    else if(i%3!=0&i%5==0) {console.log("Buzz");continue;}
+            }
+            console.log(i);
+        }
+    }
+    FizzBuzz();
+    //6
+    let res=" \t"+"a b c d e f g h"+"\n";
+    for(let j=0;j<8;j++)
+    {
+        let str="";
+        for(let i=0;i<8;i++) 
+        {
+            let r=Math.floor(Math.random()*5);
+            if(r>2) str+="#";else str+=" ";
+            str+=' ';
+        } 
+    res+=(8-j)+"\t"+str+"\n";
+    }
+    console.log(res);
+    //7
+    function min(a,b)
+    {
+        if (a<b) return a; else return b;
+    }
+    console.log(min(-4,10));
+    //8
+    function isEven(n)
+    {
+    if(n == 0){return 'true';}
+    else if(n == 1){return'false';}
+    else{return isEven(n-=2)};
+    }
+    console.log(isEven(10));
+    console.log(isEven(123));
+
+    //9
+    function countB(str)
+    {
+        let count=0;
+        for (let i=0;i<str.length;i++)
+        {
+            if (str[i]=='B') {count++;}
+        } 
+        return count;
+    }
+    console.log(countB("ABCDBBA"));
+    function countCH(str,ch)
+    {
+        let count=0;
+        for (let i=0;i<str.length;i++)
+        {
+            if (str[i]==ch) {count++;}
+        } 
+        return count;
+    }
+    console.log(countCH("ABCDBBA",'A'));
+    //10
+    function RangeF(a,b,h)
+    {
+        let rez=[];
+        if(h==null) {h=1;}
+        if(h>0)
+        {
+            for(let i=a;i<=b;i+=h)
+            {
+                rez.push(i);
+            }
+        }
+        else 
+        {
+            for(let i=a;i>=b;i+=h)
+            {
+                rez.push(i);
+            }
+        }
+        return rez;
+    }
+    function sum(array) 
+    {
+        var s = 0;
+        for (var i = 0; i < array.length; i++)
+            s+= array[i];
+        return s;
+    }
+    console.log(sum(RangeF(1,10)));
+    console.log(RangeF(1,10,2));
+    console.log(sum(RangeF(1,10,2)));
+    console.log(RangeF(5,2,-1));
+    console.log(sum(RangeF(5,2,-1)));
+    //11
+    function ReverseAr(arr)
+    {
+        let rez=[];
+        for(let i=arr.length-1;i>=0;i--)
+        {rez.push(arr[i]);}
+        return rez;
+    }
+    function RevAr(arr) 
+    {
+		for (let i = 0; i < Math.floor(arr.length / 2); i++) 
+        {
+			let temp = arr[i];
+			arr[i] = arr[arr.length - 1 - i];
+			arr[arr.length - 1 - i] = temp;
+		}
+		return arr;
+	}
+    console.log(ReverseAr([1,2,3]));
+    console.log(RevAr([1,2,3,4]));
+    //12
+    function Deep(a,b)
+    {
+        if(a===b) return true;
+        if(typeof a !=="object"||a===null||typeof b !== "object" || b === null) return false;
+        let t1=Object.keys(a);
+        let t2=Object.keys(b);
+        if(t1.length!==t2.length) return false;
+        for (let t of t1)
+        {
+            if(!t2.includes(t)||!Deep(a[t],b[t])) return false;
+        }
+        return true;
+    }
+    let aa=10;
+    let b=aa;
+    let c=aa;
+    console.log(Deep(1,1))
+    console.log(Deep(b,c))
+    console.log(Deep(1,"2"))
+    
+    //13    
+    var arrays = [[1, 2, 3], [4, 5], [6]];
+    arrays = arrays.reduce(function(a, b) 
+    {
+        return a.concat(b);
+    });
+    console.log( arrays );	
+ </script>   
+</body>
+</html>
